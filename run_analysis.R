@@ -1,26 +1,27 @@
+##If the file in the local directory doesn't exist download from specified url
+setwd("J:/Coursera/Getting and cleaning data/FinalProject/Dataset")
+if(!file.exists("./UCI HAR Dataset")){dir.create("./data")}
+fileUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(fileUrl,destfile="./UCI HAR Dataset/Dataset.zip")
 
-## Setting directory for getting training data
-## Reading training data for x, y and subject
+# Unzip dataSet to /data directory
+unzip(zipfile="./UCI HAR Dataset/Dataset.zip",exdir="./UCI HAR Dataset")
 
-setwd("J:/Coursera/Getting and cleaning data/FinalProject/Dataset/UCI HAR Dataset/train")
-training_x<-read.table("X_train.txt")
-training_y<-read.table("y_train.txt")
-training_subject<-read.table("subject_train.txt")
 
-## Setting directory for getting testing data
-## Reading testing data for x, y and subject
-
-setwd("J:/Coursera/Getting and cleaning data/FinalProject/Dataset/UCI HAR Dataset/test")
-testing_x<-read.table("X_test.txt")
-testing_y<-read.table("y_test.txt")
-testing_subject<-read.table("subject_test.txt")
-
-## Setting directory for getting feature and activity dataset
-## Reading training data for x, y and subject
+# Reading trainings and testing tables:
 setwd("J:/Coursera/Getting and cleaning data/FinalProject/Dataset/UCI HAR Dataset")
-features <- read.table("features.txt")
-activityLabels = read.table("activity_labels.txt")
+training_x <- read.table("./train/X_train.txt")
+training_y <- read.table("./UCI HAR Dataset/train/y_train.txt")
+training_subject <- read.table("./train/subject_train.txt")
+testing_x <- read.table("./test/X_test.txt")
+testing_y <- read.table("./test/y_test.txt")
+testing_subject <- read.table("./test/subject_test.txt")
 
+# Reading feature vector:
+features <- read.table('./features.txt')
+
+# Reading activity labels:
+activityLabels = read.table('./activity_labels.txt')
 ## Assigning the required column names to the respective table values
 colnames(training_x) <- features[,2] 
 colnames(training_y) <-"activityId"
@@ -58,3 +59,4 @@ second_TidySet <- aggregate(. ~subjectId + activityId, ActivityNames, mean)
 second_TidySet <- second_TidySet[order(second_TidySet$subjectId, second_TidySet$activityId),]
 # Writing that dataset to table
 write.table(second_TidySet, "second_TidySet.txt", row.name=FALSE)
+

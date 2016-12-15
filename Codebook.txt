@@ -1,0 +1,35 @@
+Codebook 
+Data for the project was found at: https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+The purpose of this project is to merge the datasets, tidy the dataset, calculate mean and standard deviation and create the final dataset
+
+For the implementation the following procedure was followed:
+
+1. The following variables are for reading the various data in the tables
+
+   a) x_train  b) y_train   c)subject_train 
+   d) x_test   e) y_test    f)subject_test 
+   g)features  h) activityLabels
+
+2. Some variables as following 
+   a) training_x  b) training_y  c) training_subject 
+   d) testing_x   e) testing_y   f) testing_subject 
+   g) activityLabels 
+	were named for the specific column names.
+
+3. The training, testing and Full data was merged under the variables:
+   a) training_data_merged
+   b) testing_data_merged
+   c) Full_data
+     All the column names of the Full data were saved under
+						a) Full_data_names
+
+4. The following variables was used to extract mean and std data 
+making necessary subset and merge columns:
+   a) mean_and_std
+   b) MeanAndStd
+   c) ActivityNames
+ 
+5. Variables used to create other dataest with average and standard deviation are:
+   a) second_TidySet 
+  And the output text file is "second_TidySet.txt" 
